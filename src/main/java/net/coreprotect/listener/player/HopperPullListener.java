@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import net.coreprotect.utility.Chat;
 import org.bukkit.Location;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -22,6 +23,7 @@ public final class HopperPullListener {
         String loggingChestId = "#hopper-pull." + location.getBlockX() + "." + location.getBlockY() + "." + location.getBlockZ();
         Object[] lastAbort = ConfigHandler.hopperAbort.get(loggingChestId);
         if (lastAbort != null) {
+            Chat.console("Logging hopper pull: " + loggingChestId);
             ItemStack[] destinationContents = destinationHolder.getInventory().getContents();
             if (((Set<?>) lastAbort[0]).contains(item) && Arrays.equals(destinationContents, (ItemStack[]) lastAbort[1])) {
                 return;
